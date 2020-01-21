@@ -1,0 +1,9 @@
+<div>
+    Main component of flashcard.
+    <div *ngFor="let card of flashCardSet; let i = index;">
+        <div>card #{{i}}</div>
+        <div>{{card.kanji}}</div>
+        <div>{{card.hiragana}}</div>
+        <div>{{card.english}}</div>
+    </div>
+</div>
