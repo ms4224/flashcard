@@ -27,5 +27,6 @@ export interface TripleFlashCard {
 const mockSet = [
     {kanji: 'soudan kanji', hiragana: 'soudan hiragana', english: 'consultation' },
     {kanji: 'tabemono kanji', hiragana: 'tabemono hiragana', english: 'food' },
-    {kanji: 'mizu kanji', hiragana: 'mizu hiragana', english: 'water' }
+    {kanji: 'mizu kanji', hiragana: 'mizu hiragana', english: 'water' },
+    {kanji: '試験', hiragana: 'テスト', english: 'water' }
 ];

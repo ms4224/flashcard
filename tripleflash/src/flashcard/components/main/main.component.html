@@ -1,9 +1,21 @@
 <div>
-    Main component of flashcard.
-    <div *ngFor="let card of flashCardSet; let i = index;">
-        <div>card #{{i}}</div>
-        <div>{{card.kanji}}</div>
-        <div>{{card.hiragana}}</div>
-        <div>{{card.english}}</div>
+    Main component of flashcard.  
+    <div *ngIf="initialized && !finished && currentCard">
+        Remaining: {{flashCardSet.length + 1}}. Completed: {{completedSet.length}}
+        <tripleflash-card category="kanji" [flipped]="false" [content]="currentCard.kanji"></tripleflash-card>
+        <tripleflash-card category="hiragana" [flipped]="false" [content]="currentCard.hiragana"></tripleflash-card>
+        <tripleflash-card category="english" [flipped]="false" [content]="currentCard.english"></tripleflash-card>
     </div>
+    <div class="completion-buttons">
+        <button (click)="goodButtonClicked()" [disabled]="finished || !currentCard">Good!</button>
+        <button (click)="redoButtonClicked()" [disabled]="finished || !currentCard">Redo</button>
+    </div>
+    <div *ngIf="finished">Complete!  You studied {{completedSet.length}} flashcards</div>
+    <!-- <div>completed cards</div>
+    <div *ngFor="let card of completedSet; let i = index;">
+        <div>card #{{i}}</div>
+        <tripleflash-card category="kanji" [flipped]="false" [content]="card.kanji"></tripleflash-card>
+        <tripleflash-card category="hiragana" [flipped]="false" [content]="card.hiragana"></tripleflash-card>
+        <tripleflash-card category="english" [flipped]="false" [content]="card.english"></tripleflash-card>
+    </div> -->
 </div>
