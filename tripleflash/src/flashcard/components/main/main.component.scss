@@ -1,0 +1,55 @@
+
+
+.main-container {    
+    padding: 25px;
+    color: #3b444f;
+    background-color: white;
+    border-radius: 4px;
+    margin: 20px 10px 20px 10px;
+    box-shadow: 0 0 1px 0 rgba(44,54,67,0.1);
+    font-family: "Helvetica Neue", Helvetica, "Times New Roman", Times, serif;
+
+    .title {
+        color: #297cbb;
+    }
+
+    .message-container {
+        display: flex;
+        flex-direction: row;
+        margin: 0px 0px 10px 0px;
+
+        div {
+            margin-right: 20px;
+        }
+    }
+    
+    .flashcard-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+    .completion-buttons {
+        margin-top: 50px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        button {
+            margin: 0px 30px 0px 30px;
+            padding: 11px 25px;
+            color: white;
+            border: none;
+            border-radius: 4px;
+
+            &.good {
+                background-color: #16c98d;
+            }
+
+            &.redo {
+                background-color: #fa5e5b;
+            }
+        }
+    }
+}
