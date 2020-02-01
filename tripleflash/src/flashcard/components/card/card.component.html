@@ -1,0 +1,4 @@
+<div (click)="onCardClick()"[@flip]="flipped ? 'flipped' : 'notFlipped'" class="card-container">
+    <span *ngIf="!flipped">{{category}}</span>
+    <span *ngIf="flipped">{{content}}</span>
+</div>
