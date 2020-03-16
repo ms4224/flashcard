@@ -1,9 +1,30 @@
 
 import { jsonList } from './jsonList';
+import { n3VocabJSON } from './n3Vocab';
+import { kanjiStep3JSON } from './kanjiStep3';
 import { TripleFlashCard } from '../services/flashcard.service';
 
-export function parseJsonList(): Array<TripleFlashCard> {
-    const list: Array<Array<string>> = JSON.parse(jsonList);
+export function parseJsonList(key: string = 'webN2'): Array<TripleFlashCard> {
+    let chosenSetJSON: string;
+    switch(key) {
+        case 'webN2': {
+            chosenSetJSON = jsonList;
+            break;
+        }
+        case 'N3Vocab': {
+            chosenSetJSON = n3VocabJSON;
+            break;
+        }
+        case 'kanjiStep3': {
+            chosenSetJSON = kanjiStep3JSON;
+            break;
+        }
+        default: {
+            chosenSetJSON = jsonList;
+            break;
+        }
+    }
+    const list: Array<Array<string>> = JSON.parse(chosenSetJSON);
     const parsedSet: Array<TripleFlashCard> = [];
     list.forEach((cardArray) => {
         if (cardArray.length == 2) {

@@ -7,16 +7,23 @@ import { FlashCardService, TripleFlashCard } from 'src/flashcard/services/flashc
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
+  public setKeys = ['webN2', 'N3Vocab', 'kanjiStep3'];
+  public selectedValue = '';
   public flashCardSet: Array<TripleFlashCard> = [];
   public currentCard: TripleFlashCard = undefined;
   public completedSet: Array<TripleFlashCard> = [];
   public initialized: boolean = false;
   public finished: boolean = false;
+  public runButtonClicked: boolean = false;
   constructor (private flashCardService: FlashCardService, private changeDetectorRef: ChangeDetectorRef) {
   }
 
   ngOnInit() {
-    this.flashCardService.getFlashCardSet().subscribe((cardSet: Array<TripleFlashCard>) => {
+  }
+
+  public runSet() {
+    this.runButtonClicked = true;
+    this.flashCardService.getFlashCardSet(this.selectedValue).subscribe((cardSet: Array<TripleFlashCard>) => {
       this.flashCardSet = cardSet;
       this.accessNextCard();
       this.initialized = true;

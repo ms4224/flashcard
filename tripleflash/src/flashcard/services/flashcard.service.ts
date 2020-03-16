@@ -9,16 +9,15 @@ export class FlashCardService {
   fullList: Array<TripleFlashCard>;
 
   constructor() {
-    this.fullList = parseJsonList();
+    // this.fullList = parseJsonList();
   }
 
   private mockGetCardSet(): Observable<Array<TripleFlashCard>> {
     return of(mockSet);
   }
 
-  public getFlashCardSet(): Observable<Array<TripleFlashCard>> {
-    // return this.mockGetCardSet();
-    return of(this.fullList);
+  public getFlashCardSet(setKey: string): Observable<Array<TripleFlashCard>> {
+    return of(parseJsonList(setKey));
   }
 
 }

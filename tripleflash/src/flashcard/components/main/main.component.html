@@ -1,5 +1,11 @@
 <div class="main-container">
-    <h1 class="title">Triple Flashcard Set</h1>  
+    <h1 class="title">Triple Flashcard Set</h1>
+    <div *ngIf="!initialized">
+        <select [(ngModel)]="selectedValue" [disabled]="runButtonClicked">
+          <option *ngFor="let key of setKeys" [ngValue]="key">{{key}}</option>
+        </select>
+        <button (click)="runSet();" [disabled]="runButtonClicked">Run Chosen Set</button>
+    </div> 
     <div *ngIf="initialized">
         <div class="message-container" *ngIf="!finished && currentCard">
             <div>
