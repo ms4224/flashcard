@@ -7,7 +7,7 @@ import { FlashCardService, TripleFlashCard } from 'src/flashcard/services/flashc
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
-  public setKeys = ['webN2', 'N3Vocab', 'kanjiStep3'];
+  public setKeys = ['webN2', 'N2Vocab', 'N3Vocab', 'kanjiStep3'];
   public selectedValue = '';
   public flashCardSet: Array<TripleFlashCard> = [];
   public currentCard: TripleFlashCard = undefined;
@@ -15,6 +15,8 @@ export class MainComponent implements OnInit {
   public initialized: boolean = false;
   public finished: boolean = false;
   public runButtonClicked: boolean = false;
+  public startIndex: number = undefined;
+  public finishIndex: number = undefined;
   constructor (private flashCardService: FlashCardService, private changeDetectorRef: ChangeDetectorRef) {
   }
 
@@ -23,7 +25,7 @@ export class MainComponent implements OnInit {
 
   public runSet() {
     this.runButtonClicked = true;
-    this.flashCardService.getFlashCardSet(this.selectedValue).subscribe((cardSet: Array<TripleFlashCard>) => {
+    this.flashCardService.getFlashCardSet(this.selectedValue, Number(this.startIndex), Number(this.finishIndex)).subscribe((cardSet: Array<TripleFlashCard>) => {
       this.flashCardSet = cardSet;
       this.accessNextCard();
       this.initialized = true;

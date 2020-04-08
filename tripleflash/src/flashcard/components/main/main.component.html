@@ -4,6 +4,14 @@
         <select [(ngModel)]="selectedValue" [disabled]="runButtonClicked">
           <option *ngFor="let key of setKeys" [ngValue]="key">{{key}}</option>
         </select>
+        <div>
+            <label>Card Start Index</label>
+            <input placeholder="Card start index (a number)" [(ngModel)]="startIndex">
+        </div>
+        <div>
+            <label>Card finish Index</label>
+            <input placeholder="Card finish index (a number)" [(ngModel)]="finishIndex">
+        </div>
         <button (click)="runSet();" [disabled]="runButtonClicked">Run Chosen Set</button>
     </div> 
     <div *ngIf="initialized">

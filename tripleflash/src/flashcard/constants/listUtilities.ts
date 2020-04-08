@@ -3,12 +3,17 @@ import { jsonList } from './jsonList';
 import { n3VocabJSON } from './n3Vocab';
 import { kanjiStep3JSON } from './kanjiStep3';
 import { TripleFlashCard } from '../services/flashcard.service';
+import { n2VocabJSON } from './n2Vocab';
 
 export function parseJsonList(key: string = 'webN2'): Array<TripleFlashCard> {
     let chosenSetJSON: string;
     switch(key) {
         case 'webN2': {
             chosenSetJSON = jsonList;
+            break;
+        }
+        case 'N2Vocab': {
+            chosenSetJSON = n2VocabJSON;
             break;
         }
         case 'N3Vocab': {

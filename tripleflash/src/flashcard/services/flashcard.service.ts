@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { parseJsonList } from '../constants/listUtilities';
 
 @Injectable({
@@ -16,8 +17,16 @@ export class FlashCardService {
     return of(mockSet);
   }
 
-  public getFlashCardSet(setKey: string): Observable<Array<TripleFlashCard>> {
-    return of(parseJsonList(setKey));
+  public getFlashCardSet(setKey: string, start?: number, finish?: number): Observable<Array<TripleFlashCard>> {
+    return of(parseJsonList(setKey)).pipe(
+      map((set: Array<TripleFlashCard>) => {
+        let slicedSet = set;
+        if ((start !== undefined && finish !== undefined && (start < finish))) {
+          slicedSet = set.slice(start, finish + 1) //ad 1 to finish because slice extracts up to before the provide index
+        }
+        return slicedSet;
+      })
+    );
   }
 
 }
