@@ -3,20 +3,31 @@ import { NgModule } from '@angular/core';
 import { MainComponent } from './components/main/main.component'
 import { FlashCardService } from './services/flashcard.service';
 import { CardComponent } from './components/card/card.component';
+import { BaseComponent } from './components/base/base.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms'
+import { RequestService } from './services/request.service';
+import { HttpClientModule } from '@angular/common/http';
+import { InsertCardComponent } from './components/insert-card/insert-card.component';
+import { ListViewComponent } from './components/list-view/list-view.component';
+import { NewDeckComponent } from './components/new-deck/new-deck.component';
 
 @NgModule({
   declarations: [
     MainComponent,
-    CardComponent
+    CardComponent,
+    BaseComponent,
+    InsertCardComponent,
+    ListViewComponent,
+    NewDeckComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
   ],
-  providers: [FlashCardService],
-  exports: [MainComponent]
+  providers: [FlashCardService, RequestService],
+  exports: [BaseComponent]
 })
 export class TripleFlashModule { }

@@ -2,39 +2,38 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { parseJsonList } from '../constants/listUtilities';
+import { RequestService } from './request.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FlashCardService {
-  fullList: Array<TripleFlashCard>;
+  fullList: Array<IFlashCardObject>;
 
-  constructor() {
+  constructor(private request: RequestService) {
     // this.fullList = parseJsonList();
   }
 
-  private mockGetCardSet(): Observable<Array<TripleFlashCard>> {
+  private mockGetCardSet(): Observable<Array<IFlashCardObject>> {
     return of(mockSet);
   }
 
-  public getFlashCardSet(setKey: string, start?: number, finish?: number): Observable<Array<TripleFlashCard>> {
-    return of(parseJsonList(setKey)).pipe(
-      map((set: Array<TripleFlashCard>) => {
-        let slicedSet = set;
-        if ((start !== undefined && finish !== undefined && (start < finish))) {
-          slicedSet = set.slice(start, finish + 1) //ad 1 to finish because slice extracts up to before the provide index
-        }
-        return slicedSet;
-      })
-    );
+  public getFlashCardSet(setKey: string, start?: number, finish?: number, online?: boolean): Observable<Array<IFlashCardObject>> {
+    if (!online) {
+      return of(parseJsonList(setKey)).pipe(
+        map((set: Array<IFlashCardObject>) => {
+          let slicedSet = set;
+          if ((start !== undefined && finish !== undefined && (start < finish))) {
+            slicedSet = set.slice(start, finish + 1) //ad 1 to finish because slice extracts up to before the provide index
+          }
+          return slicedSet;
+        })
+      );
+    } else {
+      return this.request.getCards(setKey).pipe(map(res => res.rows));
+    }
   }
 
-}
-
-export interface TripleFlashCard {
-    kanji: string,
-    hiragana: string,
-    english: string
 }
 
 const mockSet = [

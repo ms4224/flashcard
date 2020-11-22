@@ -1,0 +1,25 @@
+<div *ngIf="!showAdmin && !showCards">
+    <button (click)="showAdmin = true;">ADMIN</button>
+    <br/>
+    <br/>
+    <button (click)="showCards = true;">CARDS</button>
+</div>
+
+<div *ngIf="showAdmin">
+    Admin
+    <div>
+        <div>
+            <tripleflash-insert-card></tripleflash-insert-card>
+        </div>
+
+        <div>
+            <tripleflash-new-deck></tripleflash-new-deck>
+        </div>
+
+        <tripleflash-list-view></tripleflash-list-view>
+
+    </div>
+</div>
+
+<div *ngIf="showCards">
+    <tripleflash-main></tripleflash-main></div>

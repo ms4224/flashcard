@@ -1,0 +1,8 @@
+<div>
+    <br/>
+    NEW DECK MODULE----
+    <br/>
+    <input [(ngModel)]="newDeck">
+    <button [disabled]="loading || !newDeck" (click)="insertNewDeck()">Insert New Deck</button>
+    <div>{{finishMsg}}</div>
+</div>

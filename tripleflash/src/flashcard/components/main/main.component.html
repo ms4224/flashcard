@@ -1,9 +1,20 @@
 <div class="main-container">
     <h1 class="title">Triple Flashcard Set</h1>
     <div *ngIf="!initialized">
+        TYPED
         <select [(ngModel)]="selectedValue" [disabled]="runButtonClicked">
           <option *ngFor="let key of setKeys" [ngValue]="key">{{key}}</option>
-        </select>
+        </select> <span>           </span>
+        <button (click)="runSet();" [disabled]="runButtonClicked">Run Chosen Set</button>
+        <br/>
+        <br/>
+        ONLINE
+        <select [(ngModel)]="selectedOnlineDeck" [disabled]="runButtonClicked">
+          <option *ngFor="let deck of onlineDecks" [ngValue]="deck">{{deck}}</option>
+        </select> <span>           </span>
+        <button (click)="runOnlineSet();" [disabled]="runButtonClicked">Run Chosen Set</button>
+        <br/>
+        <br/>
         <div>
             <label>Card Start Index</label>
             <input placeholder="Card start index (a number)" [(ngModel)]="startIndex">
@@ -12,7 +23,6 @@
             <label>Card finish Index</label>
             <input placeholder="Card finish index (a number)" [(ngModel)]="finishIndex">
         </div>
-        <button (click)="runSet();" [disabled]="runButtonClicked">Run Chosen Set</button>
     </div> 
     <div *ngIf="initialized">
         <div class="message-container" *ngIf="!finished && currentCard">

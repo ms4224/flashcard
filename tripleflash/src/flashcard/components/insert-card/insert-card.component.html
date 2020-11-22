@@ -1,0 +1,14 @@
+<div>
+    INSERT CARD MODULE----
+    <br/>
+    <select [(ngModel)]="selectedDeck" [disabled]="loading">
+        <option *ngFor="let deck of decks" [ngValue]="deck">{{deck}}</option>
+      </select>
+      <div>Kanji: <input [(ngModel)]="kanji"></div>
+      <div>hiragana: <input [(ngModel)]="hiragana"></div>
+      <div>english: <input [(ngModel)]="english"></div>
+      <div>sampleSentence: <input [(ngModel)]="sampleSentence"></div>
+      <div>tag: <input [(ngModel)]="tag"></div>
+      <div><button (click)="insertCard()" [disabled]="!kanji || !hiragana || !english || !selectedDeck">insert</button></div>
+      <div>{{completeMsg || 'not yet sent'}}</div>
+</div>

@@ -1,0 +1,13 @@
+<div>
+<br/>
+    GET LIST MODULE
+    <select [(ngModel)]="selectedDeck" [disabled]="loading">
+        <option *ngFor="let deck of decks" [ngValue]="deck">{{deck}}</option>
+    </select>
+    <button [disabled]="loading || !selectedDeck" (click)="getCards()">GET LIST</button>
+    <div>LIST----</div>
+    <div *ngFor="let card of cards">
+        {{card.kanji}}       {{card.hiragana}}       {{card.english}}
+    </div>
+      
+</div>
