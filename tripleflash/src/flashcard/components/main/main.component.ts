@@ -8,7 +8,7 @@ import { RequestService } from 'src/flashcard/services/request.service';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
-  public setKeys = ['webN2', 'N2Vocab', 'N3Vocab', 'kanjiStep3'];
+  public setKeys = ['webN2', 'N2Vocab', 'N3Vocab', 'kanjiStep3', 'kanjiStep2', 'kanji2KyuuStep3'];
   public selectedValue = '';
   public flashCardSet: Array<IFlashCardObject> = [];
   public currentCard: IFlashCardObject = undefined;

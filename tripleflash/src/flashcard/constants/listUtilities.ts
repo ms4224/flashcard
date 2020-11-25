@@ -3,6 +3,8 @@ import { jsonList } from './jsonList';
 import { n3VocabJSON } from './n3Vocab';
 import { kanjiStep3JSON } from './kanjiStep3';
 import { n2VocabJSON } from './n2Vocab';
+import { kanjiStep2JSON } from './kanjiStep2';
+import { kanji2KyuuStep3JSON } from './kanji2kyuusStep3';
 
 export function parseJsonList(key: string = 'webN2'): Array<IFlashCardObject> {
     let chosenSetJSON: string;
@@ -23,6 +25,12 @@ export function parseJsonList(key: string = 'webN2'): Array<IFlashCardObject> {
             chosenSetJSON = kanjiStep3JSON;
             break;
         }
+        case 'kanjiStep2':
+            chosenSetJSON = kanjiStep2JSON;
+            break;
+        case 'kanji2KyuuStep3':
+            chosenSetJSON = kanji2KyuuStep3JSON;
+            break;
         default: {
             chosenSetJSON = jsonList;
             break;
