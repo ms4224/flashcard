@@ -22,16 +22,22 @@ export class FlashCardService {
     if (!online) {
       return of(parseJsonList(setKey)).pipe(
         map((set: Array<IFlashCardObject>) => {
-          let slicedSet = set;
-          if ((start !== undefined && finish !== undefined && (start < finish))) {
-            slicedSet = set.slice(start, finish + 1) //ad 1 to finish because slice extracts up to before the provide index
-          }
-          return slicedSet;
+          return this.sliceFlashCardSet(set, start, finish);
         })
       );
     } else {
-      return this.request.getCards(setKey).pipe(map(res => res.rows));
+      return this.request.getCards(setKey).pipe(map(res => {
+        return this.sliceFlashCardSet(res.rows, start, finish);
+      }));
     }
+  }
+
+  private sliceFlashCardSet(set: Array<IFlashCardObject>, start?: number, finish?: number) {
+    let slicedSet = set;
+    if ((start !== undefined && finish !== undefined && (start < finish))) {
+      slicedSet = set.slice(start, finish + 1) //ad 1 to finish because slice extracts up to before the provide index
+    }
+    return slicedSet;
   }
 
 }

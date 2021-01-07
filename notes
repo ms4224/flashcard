@@ -1,0 +1,6 @@
+
+
+need to run ng build --prod (to have github use static files to run)
+must do two things in the prod files
+index.html href should say "flashcard" (defaults to "/")
+copy index.html and rename copy to 404.html
