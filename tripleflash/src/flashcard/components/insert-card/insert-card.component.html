@@ -1,5 +1,5 @@
 <div>
-    INSERT CARD MODULE----
+    INSERT CARD MODULE----  <button class="clear-button" (click)="clearBaseInputs()">Clear Inputs</button>
     <br/>
     <select [(ngModel)]="selectedDeck" [disabled]="loading">
         <option *ngFor="let deck of decks" [ngValue]="deck">{{deck}}</option>

@@ -40,4 +40,10 @@ export class InsertCardComponent implements OnInit {
       }
     )
   }
+
+  public clearBaseInputs() {
+    this.kanji = '';
+    this.hiragana = '';
+    this.english = '';
+  }
 }
