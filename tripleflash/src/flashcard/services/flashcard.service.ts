@@ -40,6 +40,12 @@ export class FlashCardService {
     return slicedSet;
   }
 
+  public getReviewSet(start?: number, finish?: number) {
+    return this.request.getReviewCards().pipe(map(res => {
+      return this.sliceFlashCardSet(res, start, finish);
+    }));
+  }
+
 }
 
 const mockSet = [

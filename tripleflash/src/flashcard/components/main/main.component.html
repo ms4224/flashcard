@@ -41,6 +41,7 @@
         <div class="completion-buttons" *ngIf="!finished && currentCard"> 
             <button (click)="goodButtonClicked()" [disabled]="finished || !currentCard" class="good">Good!</button>
             <button (click)="redoButtonClicked()" [disabled]="finished || !currentCard" class="redo">Redo</button>
+            <button (click)="addToReview()" [disabled]="finished || !currentCard" class="redo">Add to review</button>
         </div>
         <div *ngIf="finished">Complete!  You studied {{completedSet.length}} flashcards</div>
     </div>

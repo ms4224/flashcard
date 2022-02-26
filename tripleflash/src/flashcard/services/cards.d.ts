@@ -10,5 +10,6 @@ type IFlashCardObject = {
     english: string,
     deck?: string,
     sampleSentence?: string,
-    tag?: string
+    tag?: string,
+    remaining?: number
 }

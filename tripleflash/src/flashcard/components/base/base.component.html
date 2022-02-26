@@ -1,8 +1,11 @@
-<div *ngIf="!showAdmin && !showCards" class="top-lvl-menu">
+<div *ngIf="!showAdmin && !showCards && !showReview" class="top-lvl-menu">
     <button (click)="showAdmin = true;">ADMIN</button>
     <br/>
     <br/>
     <button (click)="showCards = true;">CARDS</button>
+    <br/>
+    <br/>
+    <button (click)="showReview = true;">Review</button>
 </div>
 
 <div *ngIf="showAdmin">
@@ -23,3 +26,6 @@
 
 <div *ngIf="showCards">
     <tripleflash-main></tripleflash-main></div>
+    
+    <div *ngIf="showReview">
+        <tripleflash-review></tripleflash-review></div>

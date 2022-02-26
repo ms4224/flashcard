@@ -43,7 +43,7 @@ export class RequestService {
   }
 
   public getReviewCards() {
-    return this.http.get(`${baseURL}/review/cards`);
+    return this.http.get(`${baseURL}/review/cards`)as Observable<Array<IFlashCardObject>>;
   }
 
   public updateCountForCard(kanji: string, hiragana: string, english: string, deck: string, newCount: number) {

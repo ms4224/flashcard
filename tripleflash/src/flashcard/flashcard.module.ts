@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { InsertCardComponent } from './components/insert-card/insert-card.component';
 import { ListViewComponent } from './components/list-view/list-view.component';
 import { NewDeckComponent } from './components/new-deck/new-deck.component';
+import { ReviewComponent } from './components/review/review.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { NewDeckComponent } from './components/new-deck/new-deck.component';
     BaseComponent,
     InsertCardComponent,
     ListViewComponent,
-    NewDeckComponent
+    NewDeckComponent,
+    ReviewComponent
   ],
   imports: [
     BrowserModule,

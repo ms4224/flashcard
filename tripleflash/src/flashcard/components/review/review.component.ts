@@ -1,13 +1,13 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FlashCardService } from 'src/flashcard/services/flashcard.service';
 import { RequestService } from 'src/flashcard/services/request.service';
 
 @Component({
-  selector: 'tripleflash-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  selector: 'tripleflash-review',
+  templateUrl: './review.component.html',
+  styleUrls: ['./review.component.scss']
 })
-export class MainComponent implements OnInit {
+export class ReviewComponent implements OnInit {
   public setKeys = ['webN2', 'N2Vocab', 'N3Vocab', 'kanjiStep3', 'kanjiStep2', 'kanji2KyuuStep3'];
   public selectedValue = '';
   public flashCardSet: Array<IFlashCardObject> = [];
@@ -35,25 +35,26 @@ export class MainComponent implements OnInit {
     )
   }
 
-  public runOnlineSet() {
+  public runReviewSet() {
     this.runButtonClicked = true;
-    this.flashCardService.getFlashCardSet(this.selectedOnlineDeck, Number(this.startIndex), Number(this.finishIndex), true).subscribe((cardSet: Array<IFlashCardObject>) => {
+    this.flashCardService.getReviewSet(Number(this.startIndex), Number(this.finishIndex)).subscribe((cardSet: Array<IFlashCardObject>) => {
       this.flashCardSet = cardSet;
       this.accessNextCard();
       this.initialized = true;
     })
   }
 
-  public runSet() {
-    this.runButtonClicked = true;
-    this.flashCardService.getFlashCardSet(this.selectedValue, Number(this.startIndex), Number(this.finishIndex)).subscribe((cardSet: Array<IFlashCardObject>) => {
-      this.flashCardSet = cardSet;
-      this.accessNextCard();
-      this.initialized = true;
-    })
-  }
 
   public goodButtonClicked() {
+    const prevCard = this.currentCard;
+    this.request.updateCountForCard(prevCard.kanji, prevCard.hiragana, prevCard.english, prevCard.deck,
+      prevCard.remaining > 0 ? prevCard.remaining - 1 : prevCard.remaining)
+      .subscribe(
+        {
+          next: res => console.log('success reduced the count for', prevCard),
+          error: err => console.log('err reducing count', err)
+        }
+      )
     this.completedSet.push(this.currentCard);
     this.currentCard = undefined;
     if (this.flashCardSet.length > 0) {
@@ -64,21 +65,19 @@ export class MainComponent implements OnInit {
   }
 
   public redoButtonClicked() {
+    const prevCard = this.currentCard;
+    prevCard.remaining = 3;
+    this.request.updateCountForCard(prevCard.kanji, prevCard.hiragana, prevCard.english, prevCard.deck,
+      prevCard.remaining)
+      .subscribe(
+        {
+          next: res => console.log('success reset the count for', prevCard),
+          error: err => console.log('err reset count', err)
+        }
+      )
     this.flashCardSet.push(this.currentCard);
     this.currentCard = undefined;
     this.accessNextCard();
-  }
-
-  public addToReview() {
-    const prevCard = this.currentCard;
-    this.request.addNewReviewCard(prevCard.kanji, prevCard.hiragana, prevCard.english, prevCard.deck,
-      3, prevCard.sampleSentence, prevCard.tag)
-      .subscribe(
-        {
-          next: res => console.log('success added to review', prevCard),
-          error: err => console.log('err adding to review', err)
-        }
-      )
   }
 
   public accessNextCard() {
@@ -88,4 +87,5 @@ export class MainComponent implements OnInit {
       this.currentCard = this.flashCardSet.splice(Math.floor(Math.random() * this.flashCardSet.length), 1)[0];
     }
   }
+
 }

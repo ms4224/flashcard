@@ -9,6 +9,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 export class BaseComponent implements OnInit {
   public showAdmin: boolean = false;
   public showCards: boolean = false;
+  public showReview: boolean = false;
 
   constructor() {
   }
