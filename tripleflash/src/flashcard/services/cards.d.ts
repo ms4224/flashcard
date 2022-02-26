@@ -1,6 +1,4 @@
-type IQueryResponse<T> = {
-    rows: T[]
-}
+
 
 type IDeck = {
     deck: string;

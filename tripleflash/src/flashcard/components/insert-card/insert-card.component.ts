@@ -24,7 +24,7 @@ export class InsertCardComponent implements OnInit {
     this.request.getDecks().subscribe(
       res => {
         console.log(res, 'yolo');
-        res.rows.forEach(row => {
+        res.forEach(row => {
           this.decks.push(row.deck);
           console.log(this.decks);
         })

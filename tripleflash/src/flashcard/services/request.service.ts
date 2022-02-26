@@ -4,7 +4,7 @@ import { catchError, map } from 'rxjs/operators';
 import { parseJsonList } from '../constants/listUtilities';
 import { HttpClient } from '@angular/common/http';
 
-const baseURL = 'https://triple-flash-backend.herokuapp.com/tripleflash/'
+const baseURL = 'https://triple-flash-backend.herokuapp.com/tripleflash'
 
 @Injectable({
   providedIn: 'root',
@@ -15,12 +15,12 @@ export class RequestService {
     // this.fullList = parseJsonList();
   }
 
-  public getDecks(): Observable<IQueryResponse<IDeck>> {
-    return this.http.get(`${baseURL}/decks`) as Observable<IQueryResponse<IDeck>>
+  public getDecks(): Observable<Array<IDeck>> {
+    return this.http.get(`${baseURL}/decks`) as Observable<Array<IDeck>>
   }
 
-  public getCards(deck: string): Observable<IQueryResponse<IFlashCardObject>> {
-    return this.http.get(`${baseURL}/cards/${deck}`)as Observable<IQueryResponse<IFlashCardObject>>
+  public getCards(deck: string): Observable<Array<IFlashCardObject>> {
+    return this.http.get(`${baseURL}/cards/${deck}`)as Observable<Array<IFlashCardObject>>
   }
 
   public insertIntoDeck(kanji: string, hiragana: string, english: string, deck: string, sampleSentence?: string, tag?: string) {
@@ -40,5 +40,33 @@ export class RequestService {
           deck: deck
       }
       return this.http.post(`${baseURL}/decks`, body)
+  }
+
+  public getReviewCards() {
+    return this.http.get(`${baseURL}/review/cards`);
+  }
+
+  public updateCountForCard(kanji: string, hiragana: string, english: string, deck: string, newCount: number) {
+    const body = {
+      kanji: kanji,
+      hiragana: hiragana,
+      english: english,
+      deck: deck,
+      remaining: newCount
+    }
+    return this.http.put(`${baseURL}/review/cards`, body)
+  }
+
+  public addNewReviewCard(kanji: string, hiragana: string, english: string, deck: string, remaining: number, sampleSentence?: string, tag?: string) {
+      const body = {
+        kanji: kanji,
+        hiragana: hiragana,
+        english: english,
+        deck: deck,
+        sampleSentence: sampleSentence,
+        tag: tag,
+        remaining: remaining
+      }
+      return this.http.post(`${baseURL}/review/cards`, body)
   }
 }

@@ -27,7 +27,7 @@ export class FlashCardService {
       );
     } else {
       return this.request.getCards(setKey).pipe(map(res => {
-        return this.sliceFlashCardSet(res.rows, start, finish);
+        return this.sliceFlashCardSet(res, start, finish);
       }));
     }
   }

@@ -19,7 +19,8 @@ export class ListViewComponent implements OnInit {
   ngOnInit() {
     this.request.getDecks().subscribe(
       res => {
-        res.rows.forEach(row => {
+        console.log(res)
+        res.forEach(row => {
           this.decks.push(row.deck);
         })
       }
@@ -31,7 +32,7 @@ export class ListViewComponent implements OnInit {
     this.loading = true;
     this.request.getCards(this.selectedDeck).subscribe(
       res => {
-        res.rows.forEach(row => {
+        res.forEach(row => {
           this.cards.push(row);
         })
         this.loading = false;

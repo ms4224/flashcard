@@ -28,7 +28,7 @@ export class MainComponent implements OnInit {
   ngOnInit() {
     this.request.getDecks().subscribe(
       res => {
-        res.rows.forEach(row => {
+        res.forEach(row => {
           this.onlineDecks.push(row.deck);
         })
       }
