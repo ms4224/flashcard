@@ -1,0 +1,10 @@
+<div>
+  <div *ngFor="let card of cards">
+    <div>deck: {{card.deck}}</div>
+    <div>kanji: {{card.kanji}}</div>
+    <div>hiragana: {{card.hiragana}}</div>
+    <div>english: {{card.english}}</div>
+    <br/>
+    <button (click)="sendToReview(card)">send to review</button>
+  </div>
+</div>

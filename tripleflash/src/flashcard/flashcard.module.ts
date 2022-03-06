@@ -12,6 +12,7 @@ import { InsertCardComponent } from './components/insert-card/insert-card.compon
 import { ListViewComponent } from './components/list-view/list-view.component';
 import { NewDeckComponent } from './components/new-deck/new-deck.component';
 import { ReviewComponent } from './components/review/review.component';
+import { KanjiMatchComponent } from './components/kanji-match/kanji-match.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ReviewComponent } from './components/review/review.component';
     InsertCardComponent,
     ListViewComponent,
     NewDeckComponent,
-    ReviewComponent
+    ReviewComponent,
+    KanjiMatchComponent
   ],
   imports: [
     BrowserModule,

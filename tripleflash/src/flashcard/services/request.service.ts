@@ -4,7 +4,8 @@ import { catchError, map } from 'rxjs/operators';
 import { parseJsonList } from '../constants/listUtilities';
 import { HttpClient } from '@angular/common/http';
 
-const baseURL = 'https://triple-flash-backend.herokuapp.com/tripleflash'
+const baseURL = 'https://triple-flash-backend.herokuapp.com/tripleflash';
+const noneKeyword = 'NONE';
 
 @Injectable({
   providedIn: 'root',
@@ -19,8 +20,12 @@ export class RequestService {
     return this.http.get(`${baseURL}/decks`) as Observable<Array<IDeck>>
   }
 
-  public getCards(deck: string): Observable<Array<IFlashCardObject>> {
-    return this.http.get(`${baseURL}/cards/${deck}`)as Observable<Array<IFlashCardObject>>
+  public getCardsByDeck(deck: string): Observable<Array<IFlashCardObject>> {
+    return this.http.get(`${baseURL}/cards/deck/${deck}`)as Observable<Array<IFlashCardObject>>
+  }
+
+  public getCardByKanji(kanji: string): Observable<Array<IFlashCardObject>> {
+    return this.http.get(`${baseURL}/cards/kanji/${kanji}`)as Observable<Array<IFlashCardObject>>
   }
 
   public insertIntoDeck(kanji: string, hiragana: string, english: string, deck: string, sampleSentence?: string, tag?: string) {

@@ -30,7 +30,7 @@ export class ListViewComponent implements OnInit {
   getCards() {
     this.cards = [];
     this.loading = true;
-    this.request.getCards(this.selectedDeck).subscribe(
+    this.request.getCardsByDeck(this.selectedDeck).subscribe(
       res => {
         res.forEach(row => {
           this.cards.push(row);
